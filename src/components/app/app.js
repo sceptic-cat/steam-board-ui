@@ -4,6 +4,7 @@ import './app.css';
 
 
 import steamService from "../../services/steamService";
+import Header from "../header";
 
 export default class App extends Component {
 
@@ -28,7 +29,8 @@ export default class App extends Component {
         console.log(this.state.playerSummary);
         return(
             <div>
-                {this.state.playerSummary}
+                <Header />
+                <div>{this.state.playerSummary}</div>
             </div>
         );
     }
