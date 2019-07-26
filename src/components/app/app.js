@@ -5,6 +5,7 @@ import './app.css';
 
 import steamService from "../../services/steamService";
 import Header from "../header";
+import Loader from '../loader';
 
 export default class App extends Component {
 
@@ -14,7 +15,7 @@ export default class App extends Component {
 
     getPlayerSummary = () => {
         const steam = new steamService();
-        steam.getPlayerSummaries(76561197998250364).then((data) => {
+        steam.getPlayerSummaries('76561197998250364').then((data) => {
             this.setState({
                 playerSummary: data.toString()
             })
@@ -22,15 +23,16 @@ export default class App extends Component {
     };
 
     render(){
-        if (!this.state.playerSummary) {
-            console.log();
+        const {playerSummary} = this.state;
+        if (!playerSummary) {
             this.getPlayerSummary();
         }
-        console.log(this.state.playerSummary);
+        const playerInfo = playerSummary ? playerSummary : <Loader/>;
+        console.log(playerSummary);
         return(
             <div>
                 <Header />
-                <div>{this.state.playerSummary}</div>
+                <div>{playerInfo}</div>
             </div>
         );
     }
