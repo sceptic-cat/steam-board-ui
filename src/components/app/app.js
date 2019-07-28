@@ -10,12 +10,13 @@ import Loader from '../loader';
 export default class App extends Component {
 
     state = {
+        currentPlayerId: '76561197998250364',
         playerSummary: null
     };
 
     getPlayerSummary = () => {
         const steam = new steamService();
-        steam.getPlayerSummaries('76561197998250364').then((data) => {
+        steam.getPlayerSummaries(this.state.currentPlayerId).then((data) => {
             this.setState({
                 playerSummary: data.toString()
             })
