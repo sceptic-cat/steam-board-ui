@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 
 import './player-summaries.css';
 
+import Utils from '../../gears/utils';
+
 export default class PlayerSummaries extends Component {
     render(){
-        console.log('Lalalala', this.props);
         const {playerData: player} = this.props;
+        const utils = new Utils();
+        const lastlogoff = utils.timestamToDate(player.lastlogoff);
 
         return (
             <div className="row">
@@ -24,7 +27,7 @@ export default class PlayerSummaries extends Component {
                         </tr> 
                         <tr>
                             <th scope="row">Lastlogoff</th>
-                            <td>{player.lastlogoff}</td>
+                            <td>{lastlogoff}</td>
                         </tr>
                     </table>
                 </div>

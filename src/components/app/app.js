@@ -29,15 +29,14 @@ export default class App extends Component {
         if (!playerSummary) {
             this.getPlayerSummary();
         }
-        if (playerSummary) {
-            console.log('Hohoho', playerSummary.response.players[0]);
-        }
         
         const playerInfo = playerSummary ? <PlayerSummaries playerData={playerSummary.response.players[0]} /> : <Loader/>;
         return(
             <div>
                 <Header />
-                <div>{playerInfo}</div>
+                <div className="container main">
+                    {playerInfo}
+                </div>
             </div>
         );
     }
