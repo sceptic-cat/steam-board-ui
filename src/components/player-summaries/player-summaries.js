@@ -17,21 +17,59 @@ export default class PlayerSummaries extends Component {
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-7 col-xs-6">
                     <table className="table table-hover">
-                        <tr>
-                            <th scope="row">Personaname</th>
-                            <td>{player.personaname}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Personastate</th>
-                            <td>{player.personastate}</td>
-                        </tr> 
-                        <tr>
-                            <th scope="row">Lastlogoff</th>
-                            <td>{lastlogoff}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Personaname</th>
+                                <td>{player.personaname}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Personastate</th>
+                                <td><Personastate state={player.personastate} /></td>
+                            </tr> 
+                            <tr>
+                                <th scope="row">Lastlogoff</th>
+                                <td>{lastlogoff}</td>
+                            </tr>
+                        </tbody>
+                        
                     </table>
                 </div>
             </div>
         );
     };
+}
+
+const Personastate = ({state}) => {
+    let textCls = 'text-info', translation = 'sdsd';
+    switch (state) {
+        case 0: 
+            textCls = 'text-secondary';
+            translation = 'Offline';
+            break;
+        case 1: 
+            textCls = 'text-success';
+            translation = 'Online';
+            break;
+        case 2: 
+            textCls = 'text-danger';
+            translation = 'Busy';
+            break;
+        case 3: 
+            textCls = 'text-warning';
+            translation = 'Away';
+            break;
+        case 4: 
+            textCls = 'text-primary';
+            translation = 'Snooze';
+            break;
+        case 5: 
+            textCls = 'text-success';
+            translation = 'Looking to trade';
+            break;
+        case 6: 
+            textCls = 'text-success';
+            translation = 'Looking to play';
+            break;
+    }
+    return (<span className={textCls}>{translation}</span>);
 }

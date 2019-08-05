@@ -4,8 +4,12 @@ export default class Utils {
         const date = new Date();
         date.setTime(timestamp*1000);
         if (!isNaN(date)) {
-            return date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' '
-                + date.getHours() + ':' + date.getMinutes();
+            const dateN = '0'+ date.getDate(),
+                month = '0'+ date.getMonth(),
+                hours = '0'+ date.getHours(),
+                minutes = '0'+ date.getMinutes();
+            return dateN.substr(-2) + '.' + month.substr(-2) + '.' + date.getFullYear() + ' '
+                + hours.substr(-2) + ':' + minutes.substr(-2);
         } else {
             return "";
         }
