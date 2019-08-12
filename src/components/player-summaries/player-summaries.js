@@ -31,7 +31,6 @@ export default class PlayerSummaries extends Component {
                                 <td>{lastlogoff}</td>
                             </tr>
                         </tbody>
-                        
                     </table>
                 </div>
             </div>
@@ -72,4 +71,4 @@ const Personastate = ({state}) => {
             break;
     }
     return (<span className={textCls}>{translation}</span>);
-}
+};

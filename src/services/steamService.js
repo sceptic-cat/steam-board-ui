@@ -13,7 +13,10 @@ export default class steamService {
     }
 
     getPlayerSummaries = async (id) => {
-        const playerSummaries = await this.getResource(`/get-player-summaries/${id}`);
-        return playerSummaries;
+        return await this.getResource(`/get-player-summaries/${id}`);
+    };
+
+    getRecentlyPlayedGames = async (id, count = 5) => {
+        return await this.getResource(`/recently-played-games/${id}/${count}`);
     };
 }
