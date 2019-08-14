@@ -3,10 +3,33 @@ import React, { Component } from 'react';
 import './player-summaries.css';
 
 import Utils from '../../gears/utils';
+import Loader from "../loader";
+import steamService from "../../services/steamService";
 
 export default class PlayerSummaries extends Component {
+    state = {
+        player: null
+    };
+    steam = new steamService();
+
+    getPlayerSummary = (steamid) => {
+        this.steam.getPlayerSummaries(steamid).then((data) => {
+            const playerData = data.response.players[0];
+            this.setState({
+                player: playerData
+            })
+        });
+    };
+
     render(){
-        const {playerData: player} = this.props;
+        const {steamid} = this.props;
+        const {player} = this.state;
+
+        if (!player) {
+            this.getPlayerSummary(steamid);
+            return <Loader/>
+        }
+
         const utils = new Utils();
         const lastlogoff = utils.timestamToDate(player.lastlogoff);
 
