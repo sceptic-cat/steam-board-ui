@@ -38,9 +38,15 @@ export default class App extends Component {
             <div>
                 <Header />
                 <div className="container main">
-                    <PlayerSummaries steamid={this.state.currentPlayerId} />
-                    {recentlyPlayedGamesEl}
-                    <FriendList steamid={this.state.currentPlayerId} />
+                    <div className="row">
+                        <div className="col-md-9">
+                            <PlayerSummaries steamid={this.state.currentPlayerId} />
+                            {recentlyPlayedGamesEl}
+                        </div>
+                        <div className="col-md-3">
+                            <FriendList steamid={this.state.currentPlayerId} />
+                        </div>
+                    </div>
                 </div>
             </div>
         );

@@ -1,0 +1,49 @@
+import React, { Component } from 'react';
+
+import './friend.css';
+import Loader from "../loader";
+import Utils from "../../gears/utils";
+import steamService from "../../services/steamService";
+import Personastate from "../personstate";
+
+export default class Friend extends Component {
+	state = {
+		player: null
+	};
+	steam = new steamService();
+
+	getPlayerSummary = (steamid) => {
+		this.steam.getPlayerSummaries(steamid).then((data) => {
+			const playerData = data.response.players[0];
+			this.setState({
+				player: playerData
+			})
+		});
+	};
+
+	render(){
+		const {steamid} = this.props;
+		const {player} = this.state;
+
+		if (!player) {
+			this.getPlayerSummary(steamid);
+			return <Loader/>
+		}
+
+		const utils = new Utils();
+		const lastlogoff = utils.timestamToDate(player.lastlogoff);
+
+		return (
+			<div className="friendCard">
+				<div className="friendCardAvatar">
+					<img alt="avatar" src={player.avatarmedium} />
+				</div>
+				<div className="friendCardInfo">
+					<p><b>{player.personaname}</b></p>
+					<p><Personastate state={player.personastate} /></p>
+					<p>Last log off: <span className="text-secondary">{lastlogoff}</span></p>
+				</div>
+			</div>
+		);
+	};
+}

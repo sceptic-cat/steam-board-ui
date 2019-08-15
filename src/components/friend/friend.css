@@ -1,0 +1,23 @@
+.friendCard {
+	width: 100%;
+	padding: 2px;
+	display: flex;
+}
+
+.friendCardAvatar {
+	flex: 30%;
+}
+
+.friendCardInfo {
+	font-size: 12px;
+	flex: 70%;
+}
+
+.friendCardInfo > p {
+	margin: 2px;
+	padding: 0;
+}
+
+.friendCardInfo > p:first-child {
+	font-size: 14px;
+}

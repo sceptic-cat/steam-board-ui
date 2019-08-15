@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './friend-list.css';
 import steamService from "../../services/steamService";
 import Loader from "../loader";
-import PlayerSummaries from "../player-summaries";
+import Friend from "../friend";
 
 export default class FriendList extends Component {
 
@@ -30,10 +30,11 @@ export default class FriendList extends Component {
 		} else {
 			let friends = [];
 			for (const i in friendsList) {
-				friends.push(<PlayerSummaries steamid={friendsList[i]['steamid']} />)
+				friends.push(<Friend steamid={friendsList[i]['steamid']} />)
 			}
 			return (
-				<div className="row">
+				<div>
+					<h3 className="text-center">Friends list</h3>
 					{friends}
 				</div>
 			);
