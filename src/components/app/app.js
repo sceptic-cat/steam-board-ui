@@ -18,6 +18,12 @@ export default class App extends Component {
     };
     steam = new steamService();
 
+    setPlayer = (steamid) => {
+        this.setState({
+            currentPlayerId: steamid
+        })
+    };
+
     getRecentlyPlayedGames  = () => {
         this.steam.getRecentlyPlayedGames(this.state.currentPlayerId).then((data) => {
             this.setState({
@@ -44,7 +50,7 @@ export default class App extends Component {
                             {recentlyPlayedGamesEl}
                         </div>
                         <div className="col-md-3">
-                            <FriendList steamid={this.state.currentPlayerId} />
+                            <FriendList steamid={this.state.currentPlayerId} setPlayer={this.setPlayer} />
                         </div>
                     </div>
                 </div>

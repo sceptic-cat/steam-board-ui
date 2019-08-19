@@ -21,7 +21,7 @@ export default class FriendList extends Component {
 	};
 
 	render(){
-		const {steamid} = this.props;
+		const {steamid, setPlayer} = this.props;
 		const {friendsList} = this.state;
 
 		if (!friendsList) {
@@ -30,7 +30,8 @@ export default class FriendList extends Component {
 		} else {
 			let friends = [];
 			for (const i in friendsList) {
-				friends.push(<Friend steamid={friendsList[i]['steamid']} />)
+				const id = friendsList[i]['steamid'];
+				friends.push(<Friend key={id} steamid={id} setPlayer={setPlayer} />)
 			}
 			return (
 				<div>

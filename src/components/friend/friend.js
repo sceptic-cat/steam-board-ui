@@ -21,8 +21,12 @@ export default class Friend extends Component {
 		});
 	};
 
+	setPlayer = (e) => {
+		this.props.setPlayer(this.props.steamid);
+	};
+
 	render(){
-		const {steamid} = this.props;
+		const {steamid, setPlayer} = this.props;
 		const {player} = this.state;
 
 		if (!player) {
@@ -36,10 +40,10 @@ export default class Friend extends Component {
 		return (
 			<div className="friendCard">
 				<div className="friendCardAvatar">
-					<img alt="avatar" src={player.avatarmedium} />
+					<img alt="avatar" src={player.avatarmedium} onClick={setPlayer} />
 				</div>
 				<div className="friendCardInfo">
-					<p><b>{player.personaname}</b></p>
+					<p><b onClick={() => {this.setPlayer(steamid)}}>{player.personaname}</b></p>
 					<p><Personastate state={player.personastate} /></p>
 					<p>Last log off: <span className="text-secondary">{lastlogoff}</span></p>
 				</div>
