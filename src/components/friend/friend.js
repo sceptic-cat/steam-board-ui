@@ -40,7 +40,7 @@ export default class Friend extends Component {
 		return (
 			<div className="friendCard">
 				<div className="friendCardAvatar">
-					<img alt="avatar" src={player.avatarmedium} onClick={setPlayer} />
+					<img alt="avatar" src={player.avatarmedium} onClick={() => {this.setPlayer(steamid)}} />
 				</div>
 				<div className="friendCardInfo">
 					<p><b onClick={() => {this.setPlayer(steamid)}}>{player.personaname}</b></p>

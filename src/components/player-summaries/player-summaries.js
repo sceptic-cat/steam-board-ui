@@ -9,25 +9,44 @@ import steamService from "../../services/steamService";
 
 export default class PlayerSummaries extends Component {
     state = {
-        player: null
+        player: null,
+        loading: true,
     };
     steam = new steamService();
 
-    getPlayerSummary = (steamid) => {
-        this.steam.getPlayerSummaries(steamid).then((data) => {
-            const playerData = data.response.players[0];
-            this.setState({
-                player: playerData
-            })
+    componentDidMount(){
+        this.updatePlayerData();
+    }
+
+    updatePlayerData() {
+        const { steamid } = this.props;
+        if (!steamid) {
+            return;
+        }
+        this.setState({
+            loading: true
         });
-    };
+
+        this.steam.getPlayerSummaries(steamid)
+            .then((data) => {
+                const player = data.response.players[0];
+                this.setState({
+                    loading: false,
+                    player
+                });
+            });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.steamid !== prevProps.steamid) {
+            this.updatePlayerData();
+        }
+    }
 
     render(){
-        const {steamid} = this.props;
-        const {player} = this.state;
+        const {player, loading} = this.state;
 
-        if (!player) {
-            this.getPlayerSummary(steamid);
+        if (loading) {
             return <Loader/>
         }
 
