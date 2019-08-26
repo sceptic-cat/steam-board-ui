@@ -56,7 +56,7 @@ export default class FriendList extends Component {
 		}
 		return (
 			<div>
-				<h3 className="text-center">Friends list</h3>
+				<h3 className="text-center">Friends ({friends.length})</h3>
 				{friends}
 			</div>
 		);

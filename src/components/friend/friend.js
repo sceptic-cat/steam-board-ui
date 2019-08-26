@@ -31,7 +31,7 @@ export default class Friend extends Component {
 
 		if (!player) {
 			this.getPlayerSummary(steamid);
-			return <Loader/>
+			return (<div><Loader/></div>)
 		}
 
 		const utils = new Utils();

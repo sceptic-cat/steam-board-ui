@@ -8,6 +8,7 @@ import Personastate from "../personstate";
 import steamService from "../../services/steamService";
 
 export default class PlayerSummaries extends Component {
+    _isMounted = false;
     state = {
         player: null,
         loading: true,
@@ -15,6 +16,7 @@ export default class PlayerSummaries extends Component {
     steam = new steamService();
 
     componentDidMount(){
+        this._isMounted = true;
         this.updatePlayerData();
     }
 
@@ -29,11 +31,13 @@ export default class PlayerSummaries extends Component {
 
         this.steam.getPlayerSummaries(steamid)
             .then((data) => {
-                const player = data.response.players[0];
-                this.setState({
-                    loading: false,
-                    player
-                });
+                if (this._isMounted) {
+                    const player = data.response.players[0];
+                    this.setState({
+                        loading: false,
+                        player
+                    });
+                }
             });
     }
 
@@ -41,6 +45,10 @@ export default class PlayerSummaries extends Component {
         if (this.props.steamid !== prevProps.steamid) {
             this.updatePlayerData();
         }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render(){
