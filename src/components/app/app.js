@@ -13,10 +13,8 @@ import FriendList from "../friend-list";
 export default class App extends Component {
 
     state = {
-        currentPlayerId: '76561197998250364',
-        recentlyPlayedGames: null
+        currentPlayerId: '76561197998250364'
     };
-    steam = new steamService();
 
     setPlayer = (steamid) => {
         this.setState({
@@ -24,22 +22,8 @@ export default class App extends Component {
         })
     };
 
-    getRecentlyPlayedGames  = () => {
-        this.steam.getRecentlyPlayedGames(this.state.currentPlayerId).then((data) => {
-            this.setState({
-                recentlyPlayedGames: data
-            })
-        });
-    };
-
-
     render(){
-        const {recentlyPlayedGames} = this.state;
-        if (!recentlyPlayedGames) {
-            this.getRecentlyPlayedGames();
-        }
-        
-        const recentlyPlayedGamesEl = recentlyPlayedGames ? <RecentlyPlayedGames gamesList={recentlyPlayedGames.response} /> : <Loader/>;
+
         return(
             <div>
                 <Header />
@@ -47,7 +31,7 @@ export default class App extends Component {
                     <div className="row">
                         <div className="col-md-9">
                             <PlayerSummaries steamid={this.state.currentPlayerId} />
-                            {recentlyPlayedGamesEl}
+                            <RecentlyPlayedGames steamid={this.state.currentPlayerId}/>
                         </div>
                         <div className="col-md-3">
                             <FriendList steamid={this.state.currentPlayerId} setPlayer={this.setPlayer} />
