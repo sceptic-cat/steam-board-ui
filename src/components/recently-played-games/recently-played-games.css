@@ -1,0 +1,12 @@
+.recently-played-games {
+	margin: 15px 0;
+}
+
+.recently-game {
+	margin: 0;
+	width: 100%;
+}
+
+.recently-game-info {
+	line-height: 1.2;
+}

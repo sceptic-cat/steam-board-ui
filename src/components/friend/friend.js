@@ -35,7 +35,7 @@ export default class Friend extends Component {
 		}
 
 		const utils = new Utils();
-		const lastlogoff = utils.timestamToDate(player.lastlogoff);
+		const lastlogoff = utils.timestampToDate(player.lastlogoff);
 
 		return (
 			<div className="friendCard">

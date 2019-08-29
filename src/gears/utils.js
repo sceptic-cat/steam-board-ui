@@ -1,6 +1,6 @@
 export default class Utils {
-    
-    timestamToDate(timestamp) {
+
+    timestampToDate(timestamp) {
         const date = new Date();
         date.setTime(timestamp*1000);
         if (!isNaN(date)) {
@@ -14,4 +14,14 @@ export default class Utils {
             return "";
         }
     }
+
+    minutesToHour(n) {
+        const num = n;
+        const hours = (num / 60);
+        const rhours = Math.floor(hours);
+        const minutes = (hours - rhours) * 60;
+        const rminutes = Math.round(minutes);
+        return rhours + "h " + rminutes + "m";
+    }
+
  }
