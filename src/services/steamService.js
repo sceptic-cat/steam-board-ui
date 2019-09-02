@@ -34,8 +34,8 @@ export default class steamService {
         return await this.getResource(`/get-user-stats-for-game/${appid}/${steamid}`);
     };
 
-    getOwnedGames = async (steamid) => {
-        return await this.getResource(`/get-owned-games/${steamid}`);
+    getOwnedGames = async (steamid, includeAppinfo = 0) => {
+        return await this.getResource(`/get-owned-games/${steamid}/${includeAppinfo}`);
     };
 
     getRecentlyPlayedGames = async (id, count = 5) => {

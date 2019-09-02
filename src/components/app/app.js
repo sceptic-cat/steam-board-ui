@@ -9,6 +9,7 @@ import Loader from '../loader';
 import PlayerSummaries from '../player-summaries/player-summaries';
 import RecentlyPlayedGames from "../recently-played-games/recently-played-games";
 import FriendList from "../friend-list";
+import OwnedGames from "../owned-games";
 
 export default class App extends Component {
 
@@ -32,6 +33,7 @@ export default class App extends Component {
                         <div className="col-md-9">
                             <PlayerSummaries steamid={this.state.currentPlayerId} />
                             <RecentlyPlayedGames steamid={this.state.currentPlayerId}/>
+                            <OwnedGames steamid={this.state.currentPlayerId}/>
                         </div>
                         <div className="col-md-3">
                             <FriendList steamid={this.state.currentPlayerId} setPlayer={this.setPlayer} />
