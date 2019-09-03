@@ -41,4 +41,8 @@ export default class steamService {
     getRecentlyPlayedGames = async (id, count = 5) => {
         return await this.getResource(`/recently-played-games/${id}/${count}`);
     };
+
+    getSchemaForGame = async (appid) => {
+        return await this.getResource(`/schema-for-game/${appid}`);
+    };
 }
